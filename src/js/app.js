@@ -28,19 +28,89 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  // Nombre
+  let name = `<div class="nombre">${variables.name}</div>`;
+  if (variables.name == null) name = "<div class='nombre'>Name</div>";
+  // Apellido
+  let lastname = `<div class="apellido">${variables.lastname}</div>`;
+  if (variables.lastname == null)
+    lastname = "<div class='apellido'>Last Name</div>";
+  // Posición de redes sociales
+  let position = `${variables.socialMediaPosition}`;
+  if (variables.socialMediaPosition == "Right") position = "position-right";
+  // Seleccionar el role
+  let newRole = `<h2>${variables.role}</h2>`;
+  if (variables.role == null) newRole = "Role";
+  switch (variables.role) {
+    case "Web Developer":
+      newRole = "Web Developer";
+      break;
+    case "Floor Planner":
+      newRole = "Floor Planner";
+      break;
+    case "Technical Writter":
+      newRole = "Technical Writter";
+      break;
+  }
+  // Selecionar Ciudad
+  let newCity = `<h3>${variables.city}</h3>`;
+  if (variables.city == null) newCity = "City";
+  switch (variables.city) {
+    case "Miami":
+      newCity = "Miami";
+      break;
+    case "Munich":
+      newCity = "Munich";
+      break;
+    case "Caracas":
+      newCity = "Caracas";
+      break;
+    case "Toronto":
+      newCity = "Toronto";
+      break;
+  }
+  // Selecionar País
+  let newCountry = `<h3>${variables.country}</h3>`;
+  if (variables.country == null) newCountry = "Country";
+  switch (variables.country) {
+    case "USA":
+      newCountry = "USA";
+      break;
+    case "Germany":
+      newCountry = "Germany";
+      break;
+    case "Canada":
+      newCountry = "Canada";
+      break;
+    case "Venezuela":
+      newCountry = "Venezuela";
+      break;
+  }
+  // Redes Sociales
+  let newTwitter = `${variables.twitter}`;
+  if (variables.twitter == null) newTwitter = "Twitter";
+
+  let newGithub = `${variables.github}`;
+  if (variables.github == null) newGithub = "Github";
+
+  let newLinkedin = `${variables.linkedin}`;
+  if (variables.linkedin == null) newLinkedin = "Linkedin";
+
+  let newInstagram = `${variables.instagram}`;
+  if (variables.instagram == null) newInstagram = "Instagram";
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${name}${lastname}</h1>
+          <h2>${newRole}</h2>
+          <h3>${newCity}, ${newCountry}</h3>
+          <ul class = ${position}>
+            <li><a href="https://twitter.com/${newTwitter}"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${newGithub}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${newLinkedin}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${newInstagram}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
